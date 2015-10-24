@@ -44,19 +44,19 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
 
     /**
      * @inheritdoc
-
+     */
     public function rules()
     {
         return [
-            [['name', 'text'], 'required'],
+            [['name'], 'required'],
             [['text'], 'string'],
             [['status'], 'integer'],
             [['slug'], 'unique'],
-            [['slug'], 'string', 'max' => 2048],
-            [['name'], 'string', 'max' => 512],
+            [['slug'], 'string', 'max' => 255],
+            [['name'], 'string', 'max' => 255],
         ];
     }
-*/
+
     /**
      * @inheritdoc
      */

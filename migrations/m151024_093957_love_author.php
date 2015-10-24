@@ -17,21 +17,21 @@ class m151024_093957_love_author extends Migration
             'updated_at' => $this->integer()->notNull(),
 
             'name' => $this->string()->notNull(),
-            'fullname' => $this->string()->notNull(),
+            'fullname' => $this->string(),
             'slug' => $this->string()->unique(),
-            'date' => $this->string()->notNull(),
+            'date' => $this->string(),
             'intro' => $this->text(),
             'text' => 'MEDIUMTEXT NOT NULL',
-            'image' => $this->string()->notNull(),
-            'link' => $this->string()->notNull(),
+            'image' => $this->string(),
+            'link' => $this->string(),
             'in_aph' => 'tinyint(1) NOT NULL DEFAULT 0',
             'in_story' => 'tinyint(1) NOT NULL DEFAULT 0',
             'in_let' => 'tinyint(1) NOT NULL DEFAULT 0',
             'in_poem' => 'tinyint(1) NOT NULL DEFAULT 0',
 
-            'title' => $this->string()->notNull(),
-            'keywords' => $this->string()->notNull(),
-            'description' => $this->string()->notNull(),
+            'title' => $this->string(),
+            'keywords' => $this->string(),
+            'description' => $this->string(),
         ]);
 
         $this->createIndex('idx_author_status', $this->tableName, 'status');
