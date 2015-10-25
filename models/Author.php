@@ -50,7 +50,6 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
         return [
             [['name'], 'required'],
             [['text'], 'string'],
-            [['status'], 'integer'],
             [['slug'], 'unique'],
             [['slug'], 'string', 'max' => 255],
             [['name'], 'string', 'max' => 255],
