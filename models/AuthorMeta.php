@@ -46,14 +46,16 @@ class AuthorMeta extends MetaFields
                         'class'=>'lo\core\inputs\HtmlInput',
                         "fileManagerController"=>['elfinder', 'path' => 'love/author'],
                     ],
+                    "inputClassOptions" => [
+                        "widgetOptions"=>[
+                            'editorOptions'=>[
+                                //'preset' => 'basic',
+                            ]
+                        ],
+                    ],
                     "title" => Yii::t('common', 'Text'),
                     "showInGrid" => false,
                     "isRequired" => true,
-                    "widgetOptions"=>[
-                        'editorOptions'=>[
-                            //'preset' => 'basic',
-                        ]
-                    ],
                 ],
                 "params" => [$this->owner, "text"]
             ],
