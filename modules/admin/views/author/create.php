@@ -5,7 +5,7 @@
 $this->title = Yii::t('backend', 'Create {modelClass}', [
     'modelClass' => 'Page',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Authors'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-create">

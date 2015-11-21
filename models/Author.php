@@ -86,4 +86,19 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
         return $attrs;
 
     }
+
+    public function getCsvCallbacks(){
+        return  [
+            'status' => 'cbStatus',
+            'image' => 'cbImage'
+        ];
+    }
+
+    public function cbStatus($val){
+        return $val==1 ? 0 : 1;
+    }
+
+    public function cbImage($val){
+        return '/love/author/'.$val;
+    }
 }

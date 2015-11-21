@@ -18,6 +18,18 @@ class AuthorMeta extends MetaFields
     protected function config()
     {
         return [
+            "image" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\ElfImgField::className(),
+                    "inputClassOptions" => [
+                        "widgetOptions"=>[
+                            'path'=>'love/author'
+                        ],
+                    ],
+                    "title" => Yii::t('common', 'Image'),
+                ],
+                "params" => [$this->owner, "image"]
+            ],
             "name" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
