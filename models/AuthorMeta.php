@@ -66,7 +66,7 @@ class AuthorMeta extends MetaFields
                     ],
                     "title" => Yii::t('common', 'Text'),
                     "showInGrid" => false,
-                    "isRequired" => true,
+                    "isRequired" => false,
                 ],
                 "params" => [$this->owner, "text"]
             ],

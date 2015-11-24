@@ -58,7 +58,7 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
     public function getCsvCallbacks(){
         return  [
             'status' => 'cbStatus',
-            'image' => 'cbImage'
+            'img' => 'cbImage'
         ];
     }
 
