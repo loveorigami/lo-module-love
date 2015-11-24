@@ -22,7 +22,7 @@ class m151024_093957_love_author extends Migration
             'date' => $this->string(),
             'intro' => $this->text(),
             'text' => 'MEDIUMTEXT NOT NULL',
-            'image' => $this->string(),
+            'img' => $this->string(),
             'link' => $this->string(),
             'in_aph' => 'tinyint(1) NOT NULL DEFAULT 0',
             'in_story' => 'tinyint(1) NOT NULL DEFAULT 0',

@@ -18,7 +18,7 @@ class AuthorMeta extends MetaFields
     protected function config()
     {
         return [
-            "image" => [
+            "img" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\ElfImgField::className(),
                     "inputClassOptions" => [
@@ -28,7 +28,7 @@ class AuthorMeta extends MetaFields
                     ],
                     "title" => Yii::t('common', 'Image'),
                 ],
-                "params" => [$this->owner, "image"]
+                "params" => [$this->owner, "img"]
             ],
             "name" => [
                 "definition" => [
@@ -45,7 +45,6 @@ class AuthorMeta extends MetaFields
                 "definition" => [
                     "class" => \lo\core\db\fields\SlugField::className(),
                     "title" => Yii::t('common', 'Slug'),
-                    "isRequired" => true,
                     "showInGrid" => true,
                     "generateFrom" => "name",
                 ],
