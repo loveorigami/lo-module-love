@@ -26,6 +26,7 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
 
+    public $tplDir = '@lo/modules/love/modules/admin/views/author/tpl/';
     /**
      * @inheritdoc
      */
