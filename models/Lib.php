@@ -20,7 +20,6 @@ class Lib extends \lo\core\db\ActiveRecord implements ICsvImportable
     const STATUS_PUBLISHED = 1;
 
     public $tplDir = '@lo/modules/love/modules/admin/views/lib/tpl/';
-    public $img = '/none.jpg';
 
     /**
      * @inheritdoc
@@ -44,7 +43,7 @@ class Lib extends \lo\core\db\ActiveRecord implements ICsvImportable
      */
     public function getCsvAttributes()
     {
-        $attrs = array_keys($this->getAttributes( null, ['updated_at', 'updater_id'])); // пропустить
+        $attrs = array_keys($this->getAttributes( null, ['updated_at', 'updater_id', 'author_id', 'created_at'])); // пропустить
        // $attrs[] = "id";
         //$attrs[] = "confirm_password";
         return $attrs;
@@ -63,7 +62,7 @@ class Lib extends \lo\core\db\ActiveRecord implements ICsvImportable
     }
 
     public function cbImage($val){
-        if(!$val or $val == 'nety.jpg') $val = '/none.jpg';
+        if(!$val or $val == 'nety.jpg') $val = 'none.jpg';
         return '/love/lib/'.$val;
     }
 }

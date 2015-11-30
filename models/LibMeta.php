@@ -45,7 +45,7 @@ class LibMeta extends MetaFields
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
                     "title" => Yii::t('common', 'Fullname'),
-                    "showInGrid" => false,
+                    "showInGrid" => true,
                     "showInFilter" => true,
                     "isRequired" => false,
                 ],

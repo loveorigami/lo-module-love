@@ -49,7 +49,7 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
      */
     public function getCsvAttributes()
     {
-        $attrs = array_keys($this->getAttributes( null, ['updated_at', 'updater_id'])); // пропустить
+        $attrs = array_keys($this->getAttributes( null, ['updated_at', 'updater_id', 'author_id', 'created_at'])); // пропустить
        // $attrs[] = "id";
         //$attrs[] = "confirm_password";
         return $attrs;
