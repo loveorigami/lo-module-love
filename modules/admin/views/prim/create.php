@@ -3,12 +3,12 @@
 /* @var $model common\models\Page */
 
 $this->title = Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'Author',
+    'modelClass' => 'Prim',
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Authors'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Prim'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="author-create">
+<div class="prim-create">
 
     <?php echo $this->render('_form', [
         'model' => $model

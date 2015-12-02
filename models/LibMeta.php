@@ -26,6 +26,7 @@ class LibMeta extends MetaFields
                             'path'=>'love/lib'
                         ],
                     ],
+                    "initValue"=>"/love/lib/none.jpg",
                     "title" => Yii::t('common', 'Image'),
                 ],
                 "params" => [$this->owner, "img"]

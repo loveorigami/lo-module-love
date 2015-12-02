@@ -3,10 +3,10 @@
 use lo\core\widgets\admin\Grid;
 use lo\core\widgets\admin\CrudLinks;
 
-$this->title = Yii::t('backend', 'Love');
+$this->title = Yii::t('backend', 'Authors');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="page-index">
+<div class="author-index">
     <?=CrudLinks::widget(["action"=>CrudLinks::CRUD_LIST, "model"=>$searchModel])?>
     <?= $this->render('_filter', ['model' => $searchModel]); ?>
 

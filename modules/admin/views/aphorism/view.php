@@ -7,10 +7,10 @@ use lo\core\widgets\admin\CrudLinks;
  */
 
 $this->title = Yii::t('backend', 'View');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Author'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Aphorism'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->id;
 ?>
-<div class="author-view">
+<div class="aphorism-view">
 
     <?= CrudLinks::widget(["action" => CrudLinks::CRUD_VIEW, "model" => $model]) ?>
 
