@@ -43,6 +43,21 @@ class Aphorism extends \lo\core\db\ActiveRecord implements ICsvImportable
         return AphorismMeta::className();
     }
 
+    public function getLib()
+    {
+        return $this->hasOne(Lib::className(), ['id' => 'lib_id']);
+    }
+
+    public function getAut()
+    {
+        return $this->hasOne(Author::className(), ['id' => 'aut_id']);
+    }
+
+    public function getPrim()
+    {
+        return $this->hasOne(Prim::className(), ['id' => 'prim_id']);
+    }
+
     /**
      * Возвращает массив атрибутов доступных для импорта из csv
      * @return array

@@ -21,8 +21,8 @@ class m151129_072222_love_aph extends Migration
             'prim_id' => $this->integer()->notNull(),
 
             'text' => $this->text()->notNull(),
-            'prim' => $this->string(),
-            'lib' => $this->string(),
+            'prim_str' => $this->string(),
+            'lib_str' => $this->string(),
             'dop' => $this->string(),
             'hash' => $this->string(32)->notNull(),
         ]);

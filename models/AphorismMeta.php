@@ -3,7 +3,7 @@ namespace lo\modules\love\models;
 
 use Yii;
 use lo\core\db\MetaFields;
-
+use yii\helpers\ArrayHelper;
 
 /**
  * Class PageMeta
@@ -14,66 +14,94 @@ class AphorismMeta extends MetaFields
 {
 
     /**
+     * Возвращает массив для привязки к городам
+     * @return array
+     */
+    public function getLibs()
+    {
+        $models = Lib::find()->published()->orderBy(["name" => SORT_ASC])->all();
+        return ArrayHelper::map($models, "id", "name");
+    }
+
+    /**
      * @inheritdoc
      */
     protected function config()
     {
         return [
-            "aut_id" => [
-                "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('backend', 'Author'),
-                    "showInGrid" => false,
-                    "isRequired" => false,
-                ],
-                "params" => [$this->owner, "aut_id"]
-            ],
-            "lib_id" => [
-                "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('backend', 'Lib'),
-                    "showInGrid" => false,
-                    "isRequired" => false,
-                ],
-                "params" => [$this->owner, "lib_id"]
-            ],
-            "prim_id" => [
-                "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('backend', 'Prim'),
-                    "showInGrid" => false,
-                    "isRequired" => false,
-                ],
-                "params" => [$this->owner, "prim_id"]
-            ],
 
             "text" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextAreaField::className(),
-                    "title" => Yii::t('common', 'Text'),
+                    "title" => Yii::t('backend', 'Aphorism'),
                     "showInGrid" => true,
                     "isRequired" => true,
                     "showInFilter" => true,
                 ],
                 "params" => [$this->owner, "text"]
             ],
-            "prim" => [
+
+            "aut_id" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\AjaxOneField::className(),
+                    "inputClassOptions" => [
+                        'loadUrl' => ['author/list'],
+                    ],
+                    "title" => Yii::t('backend', 'Author'),
+                    "showInGrid" => true,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "aut_id", "aut"]
+            ],
+
+            "lib_id" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\AjaxOneField::className(),
+                    "inputClassOptions" => [
+                        'loadUrl' => ['lib/list'],
+                    ],
+                    /*                    'gridOptions'=>[
+                                            'class'=>\lo\core\grid\Select2Column::className(),
+                                            //'loadUrl' => ['lib/list'],
+                                        ],*/
+                    "title" => Yii::t('backend', 'Lib'),
+                    //"data" => [$this, "getLibs"], // массив всех источников (см. выше)
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "lib_id", "lib"] // id и relation getLib
+            ],
+
+            "prim_id" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\AjaxOneField::className(),
+                    "inputClassOptions" => [
+                        'loadUrl' => ['prim/list'],
+                    ],
+                    "title" => Yii::t('backend', 'Prim'),
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "prim_id", "prim"]
+            ],
+
+            "prim_str" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
                     "title" => Yii::t('backend', 'Prim'),
                     "showInGrid" => false,
                     "isRequired" => false,
                 ],
-                "params" => [$this->owner, "prim"]
+                "params" => [$this->owner, "prim_str"]
             ],
-            "lib" => [
+            "lib_str" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
                     "title" => Yii::t('backend', 'Lib'),
                     "showInGrid" => false,
                     "isRequired" => false,
                 ],
-                "params" => [$this->owner, "lib"]
+                "params" => [$this->owner, "lib_str"]
             ],
             "dop" => [
                 "definition" => [

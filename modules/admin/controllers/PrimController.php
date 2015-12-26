@@ -50,6 +50,11 @@ class PrimController extends Controller
                 'class'=>crud\XEditable::className(),
                 'modelClass'=>$class,
             ],
+            'list'=>[
+                'class'=>crud\ListId::className(),
+                'modelClass'=>$class,
+            ],
+
         ];
     }
 
