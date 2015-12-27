@@ -14,12 +14,22 @@ class AphorismMeta extends MetaFields
 {
 
     /**
-     * Возвращает массив для привязки к городам
+     * Возвращает массив для привязки к источнику
      * @return array
      */
     public function getLibs()
     {
         $models = Lib::find()->published()->orderBy(["name" => SORT_ASC])->all();
+        return ArrayHelper::map($models, "id", "name");
+    }
+
+    /**
+     * Возвращает массив для привязки к источнику
+     * @return array
+     */
+    public function getAuts()
+    {
+        $models = Author::find()->published()->orderBy(["name" => SORT_ASC])->all();
         return ArrayHelper::map($models, "id", "name");
     }
 
@@ -47,9 +57,14 @@ class AphorismMeta extends MetaFields
                     "inputClassOptions" => [
                         'loadUrl' => ['author/list'],
                     ],
+                    'gridOptions'=>[
+                        'loadUrl' => ['author/list'],
+                    ],
                     "title" => Yii::t('backend', 'Author'),
                     "showInGrid" => true,
+                    "showInExtendedFilter" => false,
                     "isRequired" => false,
+                    //"data" => [$this, "getAuts"], // массив всех авторов (см. выше)
                 ],
                 "params" => [$this->owner, "aut_id", "aut"]
             ],
@@ -60,10 +75,10 @@ class AphorismMeta extends MetaFields
                     "inputClassOptions" => [
                         'loadUrl' => ['lib/list'],
                     ],
-                    /*                    'gridOptions'=>[
-                                            'class'=>\lo\core\grid\Select2Column::className(),
-                                            //'loadUrl' => ['lib/list'],
-                                        ],*/
+                    'gridOptions'=>[
+                        //'class'=>\lo\core\grid\Select2Column::className(),
+                        //'loadUrl' => ['lib/list'],
+                    ],
                     "title" => Yii::t('backend', 'Lib'),
                     //"data" => [$this, "getLibs"], // массив всех источников (см. выше)
                     "showInGrid" => false,
