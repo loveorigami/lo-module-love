@@ -9,9 +9,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Lib'), 'url' => 
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="lib-create">
-
     <?php echo $this->render('_form', [
         'model' => $model
     ]) ?>
-
 </div>
