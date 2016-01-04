@@ -28,7 +28,6 @@ class ParserMeta extends MetaFields
     protected function config()
     {
         return [
-
             "aut_id" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\AjaxOneField::className(),

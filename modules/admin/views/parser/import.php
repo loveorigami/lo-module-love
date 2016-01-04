@@ -1,5 +1,6 @@
 <?php
 use lo\widgets\SlimScroll;
+use kartik\touchspin\TouchSpin;
 
 $script = <<< JS
     $(function() {
@@ -32,7 +33,20 @@ $this->registerJs($script);
     <div class="col-md-12">
         <div class="form-group col-md-8">
             <label for="from">Ссылка http://www.e-reading.ws/chapter.php/22166/ -ID- /Ermishin_-_Aforizmy.html</label>
-            <input type="text" class="form-control" id="from" placeholder="Enter from id" value="216">
+           <?php
+           // Vertical button alignment
+           $value = \Yii::$app->settings->get('love.parser.page');
+
+            echo TouchSpin::widget([
+            'name' => 't6',
+            'id'=>'from',
+            'value'=>$value,
+            'pluginOptions' => [
+                'verticalbuttons' => true,
+                'max' => 1500,
+            ]
+            ]);
+           ?>
         </div>
         <div class="form-group col-md-1">
             <label>Вставить в базу</label>
