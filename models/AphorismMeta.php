@@ -73,6 +73,7 @@ class AphorismMeta extends MetaFields
                 "definition" => [
                     "class" => \lo\core\db\fields\AjaxOneField::className(),
                     "inputClassOptions" => [
+                        'modalUrl' => ['lib/create'],
                         'loadUrl' => ['lib/list'],
                     ],
                     'gridOptions'=>[
@@ -80,7 +81,7 @@ class AphorismMeta extends MetaFields
                         //'loadUrl' => ['lib/list'],
                     ],
                     "title" => Yii::t('backend', 'Lib'),
-                    //"data" => [$this, "getLibs"], // массив всех источников (см. выше)
+                   // "data" => [$this, "getLibs"], // массив всех источников (см. выше)
                     "showInGrid" => false,
                     "isRequired" => false,
                 ],
