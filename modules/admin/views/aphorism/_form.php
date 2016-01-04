@@ -1,5 +1,4 @@
 <?php
-
 use lo\core\widgets\admin\Form;
 
 /**
@@ -7,3 +6,6 @@ use lo\core\widgets\admin\Form;
  */
 
 echo Form::widget(["model"=>$model]);
+
+
+
