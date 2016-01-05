@@ -7,6 +7,7 @@
         {link}
     </div>
     <div class="col-lg-5">
+        {categoriesIds}
         {img}
     </div>
     <div class="col-lg-2">

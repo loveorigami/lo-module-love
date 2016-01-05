@@ -30,11 +30,23 @@ class AuthorMeta extends MetaFields
     }
 
     /**
+     * Возвращает категории для dropDown
+     * @return array
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getCategoriesList()
+    {
+        $model = \Yii::createObject(Category::className());
+        return $model->getDataByParent();
+    }
+
+    /**
      * @inheritdoc
      */
     protected function config()
     {
         return [
+
             "img" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\ElfImgField::className(),
@@ -97,6 +109,17 @@ class AuthorMeta extends MetaFields
                 ],
                 "params" => [$this->owner, "slug"]
             ],
+
+            "categories" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\ManyManyField::className(),
+                    "title" => Yii::t('backend', 'Categories'),
+                    "isRequired" => true,
+                    "data" => [$this, "getCategoriesList"],
+                ],
+                "params" => [$this->owner, "categoriesIds", "categories"]
+            ],
+
 
             "in_aph" => [
                 "definition" => [

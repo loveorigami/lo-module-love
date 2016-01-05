@@ -27,6 +27,12 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
     const STATUS_PUBLISHED = 1;
 
     public $tplDir = '@lo/modules/love/modules/admin/views/author/tpl/';
+
+    /**
+     * @var array массив идентификаторов связанных категорий
+     */
+    protected $_categoriesIds;
+
     /**
      * @inheritdoc
      */
@@ -42,6 +48,52 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
     {
         return AuthorMeta::className();
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        $arr = parent::behaviors();
+
+        $arr["manyManySaver"] = [
+            'class' => \lo\core\behaviors\ManyManySaver::className(),
+            'names' => ['categories'],
+        ];
+        return $arr;
+    }
+
+    /**
+     * Получение идентификаторов связанных категорий
+     * @return array
+     */
+    public function getCategoriesIds()
+    {
+        if (!is_array($this->_categoriesIds) AND !$this->isNewRecord) {
+            $this->_categoriesIds = $this->getManyManyIds("categories");
+        }
+
+        return $this->_categoriesIds;
+    }
+
+    /**
+     * Установка идентификаторов связанных категорий
+     * @param array $categoriesIds
+     */
+    public function setCategoriesIds($categoriesIds)
+    {
+        $this->_categoriesIds = $categoriesIds;
+    }
+
+    /**
+     * Связь с категориями
+     * @return \yii\db\ActiveQueryInterface
+     */
+    public function getCategories()
+    {
+        return $this->hasMany(Category::className(), ['id' => 'cat_id'])->viaTable('{{%love__author_cat}}', ['aut_id' => 'id']);
+    }
+
 
     /**
      * Возвращает массив атрибутов доступных для импорта из csv
