@@ -1,14 +1,15 @@
 <div class="row">
     <div class="col-lg-5">
         {name}
+        {slug}
         {parent_id}
+        {intro}
+        {intro2}
     </div>
     <div class="col-lg-5">
-        {slug}
-        {icon}
+        {img}
     </div>
     <div class="col-lg-2" align="right">
         {status}
-        {onmain}
     </div>
 </div>

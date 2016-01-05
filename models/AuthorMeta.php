@@ -25,7 +25,7 @@ class AuthorMeta extends MetaFields
     public function tabs()
     {
         $tabs = parent::tabs();
-        $tabs[self::SEO_TAB] = Yii::t('core', "SEO");
+        $tabs[self::SEO_TAB] = Yii::t('backend', "SEO");
         return $tabs;
     }
 

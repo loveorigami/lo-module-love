@@ -11,6 +11,21 @@ use lo\core\db\MetaFields;
  */
 class CategoryMeta extends MetaFields
 {
+    /**
+     * @inheritdoc
+     */
+    const SEO_TAB = "seo";
+
+    /**
+     * @inheritdoc
+     */
+
+    public function tabs()
+    {
+        $tabs = parent::tabs();
+        $tabs[self::SEO_TAB] = Yii::t('backend', "SEO");
+        return $tabs;
+    }
 
     /**
      * @inheritdoc
@@ -18,12 +33,20 @@ class CategoryMeta extends MetaFields
     protected function config()
     {
         return [
+            "parent_id" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\ParentListField::className(),
+                    "title" => Yii::t('backend', 'Parent'),
+                    "data" => [$this->owner, "getListTreeData"],
+                ],
+                "params" => [$this->owner, "parent_id"]
+            ],
             "img" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\ElfImgField::className(),
                     "inputClassOptions" => [
                         "widgetOptions"=>[
-                            'path'=>'love/lib'
+                            'path'=>'love/cat'
                         ],
                     ],
                     "initValue"=>"/love/cat/none.jpg",
@@ -60,6 +83,47 @@ class CategoryMeta extends MetaFields
                     "isRequired" => false,
                 ],
                 "params" => [$this->owner, "intro"]
+            ],
+            "intro2" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\TextAreaField::className(),
+                    "title" => Yii::t('backend', 'Text'),
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "intro2"]
+            ],
+
+
+            "title" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\TextField::className(),
+                    "title" => Yii::t('common', 'title'),
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                    "tab" => self::SEO_TAB,
+                ],
+                "params" => [$this->owner, "title"]
+            ],
+            "description" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\TextAreaField::className(),
+                    "title" => Yii::t('common', 'description'),
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                    "tab" => self::SEO_TAB,
+                ],
+                "params" => [$this->owner, "description"]
+            ],
+            "keywords" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\TextField::className(),
+                    "title" => Yii::t('common', 'keywords'),
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                    "tab" => self::SEO_TAB,
+                ],
+                "params" => [$this->owner, "keywords"]
             ],
         ];
     }

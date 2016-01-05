@@ -9,8 +9,9 @@ use yii\helpers\Html;
  */
 
 $this->title = $model->getItemLabel();
-//$this->params['breadcrumbs'][] = ['label' => \Yii::t($this->context->tFile, 'Catalog Sections'), 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Category'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="category-view">
 
