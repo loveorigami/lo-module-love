@@ -79,7 +79,7 @@ class CategoryMeta extends MetaFields
                 "definition" => [
                     "class" => \lo\core\db\fields\TextAreaField::className(),
                     "title" => Yii::t('backend', 'Intro'),
-                    "showInGrid" => false,
+                    "showInGrid" => true,
                     "isRequired" => false,
                 ],
                 "params" => [$this->owner, "intro"]
