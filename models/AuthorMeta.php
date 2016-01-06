@@ -55,14 +55,14 @@ class AuthorMeta extends MetaFields
                             'path'=>'love/author'
                         ],
                     ],
-                    "title" => Yii::t('common', 'Image'),
+                    "title" => Yii::t('backend', 'Image'),
                 ],
                 "params" => [$this->owner, "img"]
             ],
             "name" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('common', 'Name'),
+                    "title" => Yii::t('backend', 'Name'),
                     "showInGrid" => true,
                     "showInFilter" => true,
                     "isRequired" => true,
@@ -73,7 +73,7 @@ class AuthorMeta extends MetaFields
             "fullname" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('common', 'Fullname'),
+                    "title" => Yii::t('backend', 'Fullname'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                     "isRequired" => false,
@@ -83,7 +83,7 @@ class AuthorMeta extends MetaFields
             "date" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('common', 'Date'),
+                    "title" => Yii::t('backend', 'Date'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                     "isRequired" => false,
@@ -93,7 +93,7 @@ class AuthorMeta extends MetaFields
             "link" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('common', 'Link'),
+                    "title" => Yii::t('backend', 'Link'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                     "isRequired" => false,
@@ -103,7 +103,7 @@ class AuthorMeta extends MetaFields
             "slug" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\SlugField::className(),
-                    "title" => Yii::t('common', 'Slug'),
+                    "title" => Yii::t('backend', 'Slug'),
                     "showInGrid" => true,
                     "generateFrom" => "name",
                 ],
@@ -124,7 +124,7 @@ class AuthorMeta extends MetaFields
             "in_aph" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\CheckBoxField::className(),
-                    "title" => Yii::t('common', 'InAph'),
+                    "title" => Yii::t('backend', 'InAph'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                 ],
@@ -133,7 +133,7 @@ class AuthorMeta extends MetaFields
             "in_story" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\CheckBoxField::className(),
-                    "title" => Yii::t('common', 'InStory'),
+                    "title" => Yii::t('backend', 'InStory'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                 ],
@@ -142,7 +142,7 @@ class AuthorMeta extends MetaFields
             "in_let" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\CheckBoxField::className(),
-                    "title" => Yii::t('common', 'InLet'),
+                    "title" => Yii::t('backend', 'InLet'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                 ],
@@ -151,7 +151,7 @@ class AuthorMeta extends MetaFields
             "in_poem" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\CheckBoxField::className(),
-                    "title" => Yii::t('common', 'InPoem'),
+                    "title" => Yii::t('backend', 'InPoem'),
                     "showInGrid" => false,
                     "showInFilter" => true,
                 ],
@@ -172,7 +172,7 @@ class AuthorMeta extends MetaFields
                             ]
                         ],
                     ],
-                    "title" => Yii::t('common', 'Text'),
+                    "title" => Yii::t('backend', 'Text'),
                     "showInGrid" => false,
                     "isRequired" => false,
                 ],
@@ -193,7 +193,7 @@ class AuthorMeta extends MetaFields
             "title" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('common', 'title'),
+                    "title" => Yii::t('backend', 'title'),
                     "showInGrid" => false,
                     "isRequired" => false,
                     "tab" => self::SEO_TAB,
@@ -203,7 +203,7 @@ class AuthorMeta extends MetaFields
             "description" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextAreaField::className(),
-                    "title" => Yii::t('common', 'description'),
+                    "title" => Yii::t('backend', 'description'),
                     "showInGrid" => false,
                     "isRequired" => false,
                     "tab" => self::SEO_TAB,
@@ -213,7 +213,7 @@ class AuthorMeta extends MetaFields
             "keywords" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),
-                    "title" => Yii::t('common', 'keywords'),
+                    "title" => Yii::t('backend', 'keywords'),
                     "showInGrid" => false,
                     "isRequired" => false,
                     "tab" => self::SEO_TAB,
