@@ -26,6 +26,8 @@ class ParserController extends Controller
     protected $check_aphs = []; // проверенные строки
     protected $show_aphs = []; // готовые
 
+    protected $msg = ''; // сообщения
+
 
     public function actions()
     {
@@ -75,8 +77,15 @@ class ParserController extends Controller
         $this->get_dom($html, 'div.section');
         $this->check_dom();
         $this->show_dom();
+        if($this->data['to_db']){
+            $this->todb_dom();
+            echo json_encode('<pre>'.$this->msg . '</pre>');
+        }
+        else{
+            $this->msg = 'просмотр<br>';
+            echo json_encode('<pre>'.$this->msg . print_r($this->show_aphs, true) . '</pre>');
+        }
 
-        echo json_encode('<pre>' . print_r($this->show_aphs, true) . '</pre>');
     }
 
     // получаем строки
@@ -84,7 +93,7 @@ class ParserController extends Controller
     {
         foreach ($html->find('div.section') as $div) {
             foreach ($div->children() as $p) {
-                $item['aph'] = Html::encode(str_replace('&nbsp;', ' ', $p->plaintext));
+                $item['aph'] = Html::encode(str_replace(['&nbsp;', '&ndash;'], [' ', '-'], $p->plaintext));
                 $item['tag'] = $p->tag;
                 $item['str'] = StringHelper::strMd5($p->plaintext, false);
                 $this->get_aphs[] = $item;
@@ -162,6 +171,7 @@ class ParserController extends Controller
             $item['id_prim'] = $aph['sup'];
             $item['hash'] = StringHelper::strMd5($aph['text']);
             $item['db'] = $this->getItem($item['hash']);
+            $item['aut_id'] = $this->data['aut_id'];
             $this->show_aphs[] = $item;
         }
     }
@@ -169,35 +179,41 @@ class ParserController extends Controller
 
     // вставка в базу
     function todb_dom(){
+        $ii = 0;
+        $iu = 0;
         foreach ($this->show_aphs AS $a){
             if($a['db']){
-                $data_aph=[
-                    'text'=>  htmlspecialchars($a['text']),
-                    'id_lib'=>$this->data['id_lib'],
-                    'id_prim'=>$a['id_prim'],
-                    'prim'=>'',
-                    'date'=>date('Y-m-d H:i:s'),
-                ];
-               // if($this->upd_aut) $data_aph['id_aut']=$this->id_aut;
-               // $this->model_mx->Update($data_aph, $a['db']);
+                $iu++;
+                $model = Parser::findOne($a['db']);
+                $model->setScenario('update');
+                $model->lib_id = $this->data['id_lib'];
+                $model->prim_id = $a['id_prim'];
+                $model->text = $a['text'];
+                $model->hash = $a['hash'];
+
+                if($this->data['upd_aut']) $model->aut_id = $this->data['aut_id'];
+
+                $model->save(false);
+
             }
             else{
-                $data_aph=[
-                    'text'=>  htmlspecialchars($a['text']),
-                    'id_lib'=>$this->id_lib,
-                    'id_aut'=>$this->id_aut,
-                    'id_prim'=>$a['id_prim'],
-                    'hash'=>$a['hash'],
-                    'hide'=>0,
-                    'date'=>date('Y-m-d H:i:s'),
-                ];
-               // $this->model_mx->Insert($data_aph);
+                $ii++;
+                $model = new Parser();
+                $model->setScenario('insert');
+                $model->lib_id = $this->data['id_lib'];
+                $model->aut_id = $this->data['aut_id'];
+                $model->prim_id = $a['id_prim'];
+                $model->text = $a['text'];
+                $model->hash = $a['hash'];
+                $model->status = 1;
+                $model->save(false);
             }
-            debug($data_aph);
+
         }
 
-    }
+        $this->msg='вставлено: '.$ii.', обновлено: '.$iu;
 
+    }
 
 
     private function getItem($hash)
@@ -209,33 +225,6 @@ class ParserController extends Controller
         return false;
     }
 
-    private function addItem($id, $item)
-    {
-
-        $model = $this->findModel($id);
-
-        if ($model) {
-            $model->setScenario('update');
-            $model->text = $item['text'];
-            $model->save();
-            return 'есть запись';
-        } else {
-            return 'без добавления';
-            $model = new Parser();
-            $model->setScenario('insert');
-            $model->id = $id;
-            $model->name = $item['title'];
-            $model->intro = $item['intro'];
-            //var_dump($model->attributes);
-
-            if ($model->validate()) {
-                $model->save();
-                return 'запись добавлена';
-            } else {
-                return print_r($model->getErrors(), true);
-            }
-        }
-    }
 
     /**
      * Finds the KeyStorageItem model based on its primary key value.
@@ -253,19 +242,25 @@ class ParserController extends Controller
         }
     }
 
-/*    public function actionHash()
+    public function actionHash()
     {
         set_time_limit(0);
 
-        $models = Parser::find()->all();
+        //$models = Parser::find()->where(['like', 'text', 'nbsp'])->all();
+        $models = Parser::find()->where(['like', 'text', 'br'])->all();
 
         foreach($models as $model){
-            $hash = StringHelper::strMd5($model->text);
+            //$str = str_replace('&amp;nbsp;', ' ', $model->text);
+            $str = str_replace('<br>', "\r\n", $model->text);
+            $hash = StringHelper::strMd5($str);
             $model->setScenario('update');
             $model->hash = $hash;
-            $model->save();
+            $model->text = $str;
+           // $model->save();
+
+            echo $str;
         }
-        echo $hash;
-    }*/
+
+    }
 
 }

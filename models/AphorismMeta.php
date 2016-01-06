@@ -130,7 +130,10 @@ class AphorismMeta extends MetaFields
             ],
             "hash" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\HashField::className(),
+                    "inputClassOptions" => [
+                        'options' => ['readonly'=>true],
+                    ],
                     "title" => Yii::t('backend', 'Hash'),
                     "showInGrid" => true,
                     "isRequired" => false,
