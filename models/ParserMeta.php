@@ -32,7 +32,7 @@ class ParserMeta extends MetaFields
                 "definition" => [
                     "class" => \lo\core\db\fields\AjaxOneField::className(),
                     "inputClassOptions" => [
-                        'modalUrl' => ['author/create'],
+                        //'modalUrl' => ['author/create'],
                         'loadUrl' => ['author/list'],
                     ],
                     "title" => Yii::t('backend', 'Author'),

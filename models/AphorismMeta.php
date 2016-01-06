@@ -73,7 +73,7 @@ class AphorismMeta extends MetaFields
                 "definition" => [
                     "class" => \lo\core\db\fields\AjaxOneField::className(),
                     "inputClassOptions" => [
-                        'modalUrl' => ['lib/create'],
+                        //'modalUrl' => ['lib/create'],
                         'loadUrl' => ['lib/list'],
                     ],
                     'gridOptions'=>[
