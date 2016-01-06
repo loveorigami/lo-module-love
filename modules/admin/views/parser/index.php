@@ -3,8 +3,7 @@ use lo\widgets\Ajaxq;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-
-$this->title = Yii::t('backend', 'Aphorism');
+$this->title = 'Парсер';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

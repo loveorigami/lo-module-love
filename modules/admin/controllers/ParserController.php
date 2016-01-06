@@ -202,7 +202,7 @@ class ParserController extends Controller
                 $model->setScenario('insert');
                 $model->lib_id = $this->data['id_lib'];
                 $model->aut_id = $this->data['aut_id'];
-                $model->prim_id = $a['id_prim'];
+                if(!$model->prim_id) $model->prim_id = $a['id_prim'];
                 $model->text = $a['text'];
                 $model->hash = $a['hash'];
                 $model->status = 1;
