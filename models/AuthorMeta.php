@@ -50,6 +50,7 @@ class AuthorMeta extends MetaFields
             "img" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\ElfImgField::className(),
+                    "initValue"=>"/love/author/none.jpg",
                     "inputClassOptions" => [
                         "widgetOptions"=>[
                             'path'=>'love/author'
