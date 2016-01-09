@@ -9,15 +9,32 @@
 namespace lo\modules\love\controllers;
 
 use lo\modules\love\models\Aphorism;
+use lo\modules\love\models\Category;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\data\ActiveDataProvider;
+
 
 
 class AphorismController extends Controller
 {
-    public function actionIndex(){
+    public function actionIndex($cat=''){
 
-        return $this->render('index');
+        if($cat){
+            $model = Category::find()->bySlug($cat)->one();
+        }
+        else{
+            $model = Category::findOne(['id'=>Category::ROOT_APHORISM]);
+        }
+
+        $model->updateCounters(['total_hits' => 1]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Aphorism::find()->published(),
+        ]);
+
+        return $this->render('index', compact('model', 'dataProvider'));
+
     }
 
     public function actionView($slug){
@@ -29,6 +46,12 @@ class AphorismController extends Controller
     }
 
     public function actionCategory($cat){
-        return $this->render('category', compact('cat'));
+
+        $model = Category::find()->bySlug($cat)->one();
+        $model->updateCounters(['total_hits' => 1]);
+
+
+        return $this->render('category',compact('model'));
     }
+
 } 

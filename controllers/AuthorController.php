@@ -10,11 +10,27 @@ namespace lo\modules\love\controllers;
 
 use lo\modules\love\models\Author;
 use yii\web\Controller;
+use sjaakp\alphapager\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 
 class AuthorController extends Controller
 {
+
+    public function actionIndex(){
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Author::find()->orderBy('name'),
+            'alphaAttribute' => 'name',
+            'alphaDigits' => ['А', 'Б']
+        ]);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+
     public function actionView($slug){
         $model = Author::find()->where(['slug'=>$slug])->published()->one();
         if(!$model){

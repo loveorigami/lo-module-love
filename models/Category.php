@@ -18,6 +18,10 @@ class Category extends \lo\core\db\TActiveRecord
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
 
+    const ROOT_APHORISM = 153;
+    const ROOT_STORY = 154;
+
+
     public $tplDir = '@lo/modules/love/modules/admin/views/category/tpl/';
     /**
      * @inheritdoc
@@ -41,6 +45,6 @@ class Category extends \lo\core\db\TActiveRecord
      */
     public function getRoute()
     {
-        return '/love/aphorism/category';
+        return '/love/aphorism/index';
     }
 }

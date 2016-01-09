@@ -94,7 +94,15 @@ class CategoryMeta extends MetaFields
                 "params" => [$this->owner, "intro2"]
             ],
 
-
+            "total_hits" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\NumberField::className(),
+                    "title" => Yii::t('backend', 'Total hits'),
+                    "showInGrid" => true,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "total_hits"]
+            ],
             "title" => [
                 "definition" => [
                     "class" => \lo\core\db\fields\TextField::className(),

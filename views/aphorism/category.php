@@ -4,11 +4,19 @@ use lo\core\widgets\treelist\TreeList;
 use lo\modules\love\models\Category;
 use yii\helpers\Url;
 
-$this->title = Yii::t('frontend', 'Aphorismes');
-$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['aphorism/index']];
-$this->params['breadcrumbs'][] = $cat;
+$this->title = $model->name;
+
+$breadcrumbs = $model->getBreadCrumbsItems($model->id, function ($m) {
+    return ["/" . Yii::$app->controller->route, "cat" => $m->slug];
+});
+    $breadcrumbs = array_slice($breadcrumbs, 0, -1);
+    $this->params['breadcrumbs'] = $breadcrumbs;
+    $this->params['breadcrumbs'][0] = ['label' => Yii::t('frontend', 'Aphorismes'), 'url' => ['aphorism/index']];;
+    $this->params['breadcrumbs'][] = $model->name;
 
 ?>
+
+просмотров: <?=$model->total_hits ?>
 
 <?php OffCanvas::begin();?>
 <?= TreeList::widget([
@@ -21,7 +29,7 @@ $this->params['breadcrumbs'][] = $cat;
     'options' =>[
         'class'=>'list-group sidebar-nav-v1',
         'id'=>'sidebar-nav'
-    ]
+    ],
 ]);
 ?>
 <?php OffCanvas::end();?>

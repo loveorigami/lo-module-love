@@ -4,17 +4,20 @@ return [
     'modules' => [
         'love' => [
             'class' => 'lo\modules\love\Module',
-            'defaultRoute' => 'aphorism/index'
+            //'defaultRoute' => 'aphorism/index'
         ],
     ],
 
     'components'=>[
         'urlManager'=>[
             'rules'=>[
-                'aphorism/<cat:[\w\-]+>' => 'love/aphorism/category',
+                //'aphorism/p<page:\d+>' => 'love/aphorism/index',
+                'aphorism/<cat:[\w\-]+>' => 'love/aphorism/index',
                 'aphorism/<slug:[\w\-]+>' => 'love/aphorism/view',
-                'aphorism/p<page:\d+>' => 'love/aphorism/index',
                 'aphorism' => 'love/aphorism/index',
+
+                'love/author/<slug:[\w\-]+>' => 'love/author/view',
+                'love/author' => 'love/author/index',
             ]
         ]
     ]
