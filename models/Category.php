@@ -4,7 +4,6 @@ namespace lo\modules\love\models;
 
 use Yii;
 
-
 /**
  * This is the model class for table "love__cat".
  *
@@ -36,4 +35,12 @@ class Category extends \lo\core\db\TActiveRecord
         return CategoryMeta::className();
     }
 
+    /**
+     * Возвращает ссылку на категорию
+     * @return array|string
+     */
+    public function getRoute()
+    {
+        return '/love/aphorism/category';
+    }
 }
