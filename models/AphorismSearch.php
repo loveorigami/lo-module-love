@@ -32,12 +32,14 @@ class AphorismSearch extends Aphorism
 
         $query->innerJoinWith([
             'aut' => function ($q) use ($params) {
+                $q->andFilterWhere([Author::tableName() . '.slug' => $params['slug']]);
                 $q->innerJoinWith([
                     'categories' => function ($q) use ($params) {
                         $q->andFilterWhere([Category::tableName() . '.slug' => $params['cat']]);
                         $q->published();
                     }
                 ])->published();
+
             },
         ])->groupBy(['id'])->published();
 

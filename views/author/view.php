@@ -9,3 +9,5 @@ $this->title = $model->name;
     <h1><?php echo $model->name ?></h1>
     <?php echo $model->text ?>
 </div>
+
+<?=$res['html']?>

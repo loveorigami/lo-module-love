@@ -8,14 +8,37 @@
 
 namespace lo\modules\love\controllers;
 
-use lo\modules\love\models\Author;
-use yii\web\Controller;
-use sjaakp\alphapager\ActiveDataProvider;
-use yii\web\NotFoundHttpException;
 
+
+
+use Yii;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use sjaakp\alphapager\ActiveDataProvider;
+
+use lo\core\db\ActiveRecord;
+
+use lo\core\cache\TagDependency;
+use lo\core\cache\CacheHelper;
+
+use lo\modules\love\models\Author;
+use lo\modules\love\models\Aphorism;
+use lo\modules\love\models\AphorismSearch;
 
 class AuthorController extends Controller
 {
+
+    const LIST_CACHE_ID = "love-author-list";
+
+    /**
+     * @var array сортировка
+     */
+    public $orderBy = ["id" => SORT_DESC];
+
+    /**
+     * @var int количество новостей на странице
+     */
+    public $pageSize = 20;
 
     public function actionIndex(){
 
@@ -32,10 +55,39 @@ class AuthorController extends Controller
 
 
     public function actionView($slug){
-        $model = Author::find()->where(['slug'=>$slug])->published()->one();
-        if(!$model){
-            throw new NotFoundHttpException(\Yii::t('frontend', 'Page not found'));
+        {
+            $model = Author::find()->bySlug($slug)->one();
+
+            if(!$model)  throw new NotFoundHttpException;
+
+            //$model->updateCounters(['total_hits' => 1]);
+
+            $searchModel = Yii::createObject(['class' => AphorismSearch::className(), 'scenario' => ActiveRecord::SCENARIO_SEARCH]);
+            $filter = $searchModel->load(Yii::$app->request->queryParams);
+
+            $cacheId = CacheHelper::getActionCacheId(static::LIST_CACHE_ID);
+            $res = Yii::$app->cache->get($cacheId);
+
+            if (empty($res) OR $filter) {
+                $dependency = Yii::createObject(TagDependency::className());
+
+                $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+                $dataProvider->getSort()->defaultOrder = $this->orderBy;
+                $dataProvider->getPagination()->pageSize = $this->pageSize;
+
+                $res["html"] = $this->renderPartial('/aphorism/_grid', ["dataProvider" => $dataProvider]);
+
+                $dependency->addTag($model->setClassTagSafe());
+                $dependency->setTagsFromModels($dataProvider->getModels());
+
+                //echo 'не из кеша';
+                if(!$filter)
+                    Yii::$app->cache->set($cacheId, $res, Yii::$app->params["cacheDuration"], $dependency);
+
+            }
+
+            return $this->render('view', compact('model', 'searchModel', 'dataProvider', 'res'));
+
         }
-        return $this->render('view', ['model'=>$model]);
     }
 } 

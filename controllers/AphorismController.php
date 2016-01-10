@@ -11,7 +11,6 @@ namespace lo\modules\love\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\data\ActiveDataProvider;
 
 use lo\core\db\ActiveRecord;
 
