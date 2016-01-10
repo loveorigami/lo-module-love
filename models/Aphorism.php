@@ -56,5 +56,4 @@ class Aphorism extends \lo\core\db\ActiveRecord
     }
 
 
-
 }

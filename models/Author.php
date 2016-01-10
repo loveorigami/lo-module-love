@@ -3,7 +3,6 @@
 namespace lo\modules\love\models;
 
 use Yii;
-use lo\modules\import\models\ICsvImportable;
 
 
 /**
@@ -18,7 +17,7 @@ use lo\modules\import\models\ICsvImportable;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
+class Author extends \lo\core\db\ActiveRecord
 {
 
     use \lo\core\rbac\ConstraintTrait;
@@ -94,32 +93,13 @@ class Author extends \lo\core\db\ActiveRecord implements ICsvImportable
         return $this->hasMany(Category::className(), ['id' => 'cat_id'])->viaTable('{{%love__author_cat}}', ['aut_id' => 'id']);
     }
 
-
     /**
-     * Возвращает массив атрибутов доступных для импорта из csv
-     * @return array
+     * Связь с афоризмами
+     * @return \yii\db\ActiveQueryInterface
      */
-    public function getCsvAttributes()
+    public function getAphs()
     {
-        $attrs = array_keys($this->getAttributes( null, ['updated_at', 'updater_id', 'author_id', 'created_at'])); // пропустить
-       // $attrs[] = "id";
-        //$attrs[] = "confirm_password";
-        return $attrs;
-
+        return $this->hasMany(Aphorism::className(), ['aut_id' => 'id']);
     }
 
-    public function getCsvCallbacks(){
-        return  [
-            'status' => 'cbStatus',
-            'img' => 'cbImage'
-        ];
-    }
-
-    public function cbStatus($val){
-        return $val==1 ? 0 : 1;
-    }
-
-    public function cbImage($val){
-        return '/love/author/'.$val;
-    }
 }
