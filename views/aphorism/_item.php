@@ -24,9 +24,10 @@ use yii\helpers\Html;
                         </span>
         </div>
     </div>
+    <hr class="devider devider-dotted">
 </div>
 
-<hr class="devider devider-dotted">
+
 
 
 
