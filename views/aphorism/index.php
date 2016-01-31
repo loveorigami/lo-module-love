@@ -49,7 +49,7 @@ echo '</div>';
 
 <?php Block::end(); ?>
 
-<?php Block::begin(); ?>
+<?php Block::begin(['title'=>'Категории']); ?>
 
     <?= TreeList::widget([
         'modelClass' => Category::className(),
@@ -69,14 +69,13 @@ echo '</div>';
 
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <?php Block::begin(['title'=>$model->name, 'type'=>'content']); ?>
-        <div class="heading heading-v4">
-            <h1><?=$model->name?></h1>
-            <p><?=$model->intro?></p>
-        </div>
-
-        <hr class="devider devider-dotted">
-
-            <?=$res['html']?>
+    <?php Block::begin(['title'=>$model->name, 'type'=>'green']); ?>
+    <div class="heading heading-v4">
+        <h1><?=$model->name?></h1>
+        <p><?=$model->intro?></p>
+    </div>
+    <?php Block::end(); ?>
+    <?php Block::begin(['type'=>'content']); ?>
+        <?=$res['html']?>
     <?php Block::end(); ?>
 </div>

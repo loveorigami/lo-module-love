@@ -17,7 +17,8 @@ class AphorismSearch extends Aphorism
     public function attributeLabels()
     {
         return [
-            'author' => 'Автор'
+            'author' => 'Автор',
+            'aggregate_rating' => 'Рейтинг'
         ];
     }
 
