@@ -140,6 +140,32 @@ class AphorismMeta extends MetaFields
                 ],
                 "params" => [$this->owner, "hash"]
             ],
+
+            "rating" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\NumberField::className(),
+                    "inputClassOptions" => [
+                        'options' => ['readonly'=>true],
+                    ],
+                    "title" => Yii::t('backend', 'Rating'),
+                    "showInGrid" => false,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "rating"]
+            ],
+
+            "aggregate_rating" => [
+                "definition" => [
+                    "class" => \lo\core\db\fields\NumberField::className(),
+                    "inputClassOptions" => [
+                        'options' => ['readonly'=>true],
+                    ],
+                    "title" => Yii::t('backend', 'Total rating'),
+                    "showInGrid" => true,
+                    "isRequired" => false,
+                ],
+                "params" => [$this->owner, "aggregate_rating"]
+            ],
         ];
     }
 }

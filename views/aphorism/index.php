@@ -1,5 +1,6 @@
 <?php
 use lo\core\widgets\offcanvas\OffCanvas;
+use lo\core\widgets\block\Block;
 use lo\core\widgets\treelist\TreeList;
 use lo\modules\love\models\Category;
 use yii\helpers\Url;
@@ -22,22 +23,34 @@ $action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$
 
 
 
+
+<?php OffCanvas::begin(); ?>
+
+<?php Block::begin(['type'=>'pink', 'title'=>'Поиск афоризмов']); ?>
 <?php $form = ActiveForm::begin([
     'action' => $action,
     'method' => 'get',
 ]);
+echo '<div class="input-group">';
 
 echo Html::activeTextInput($searchModel,
     'text',
-    ['placeholder' => 'Поиск...']
-); ?>
+    ['placeholder' => 'Поиск...', 'class'=>'form-control']
+);
 
-<button class="button-search pull-right" type="submit">
-    <span class="fa fa-search"></span>
-</button>
+echo '<div class="input-group-btn">
+        <button type="submit" tabindex="-1" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+    </div>';
+echo '</div>';
+
+?>
+
 <?php $form->end(); ?>
 
-<?php OffCanvas::begin(); ?>
+<?php Block::end(); ?>
+
+<?php Block::begin(); ?>
+
     <?= TreeList::widget([
         'modelClass' => Category::className(),
         'urlCreate' => function ($slug) {
@@ -51,19 +64,19 @@ echo Html::activeTextInput($searchModel,
         ]
     ]);
     ?>
+<?php Block::end(); ?>
 <?php OffCanvas::end(); ?>
 
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <div class="tag-box tag-box-v3">
+    <?php Block::begin(['title'=>$model->name, 'type'=>'content']); ?>
         <div class="heading heading-v4">
-            <h2><?=$model->name?></h2>
+            <h1><?=$model->name?></h1>
             <p><?=$model->intro?></p>
         </div>
 
         <hr class="devider devider-dotted">
 
             <?=$res['html']?>
-
-    </div>
+    <?php Block::end(); ?>
 </div>

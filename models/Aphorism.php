@@ -35,6 +35,20 @@ class Aphorism extends \lo\core\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        $arr = parent::behaviors();
+
+        $arr["vote"] = [
+            'class' => \lo\modules\vote\behaviors\RatingBehavior::className(),
+            'model_name' => 'aphorism', // name of this model
+        ];
+        return $arr;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function metaClass()
     {
         return AphorismMeta::className();
