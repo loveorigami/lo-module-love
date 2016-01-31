@@ -14,7 +14,7 @@ use yii\helpers\Html;
             <span class="testimonial-author">
 
                 <?= Html::a($model->aut->name, Url::to(['author/view', 'slug' => $model->aut->slug])) ?>
-                <?= $this->renderDynamic("return \\lo\\modules\\vote\\Display::widget([
+                <?= $this->renderDynamic("return \\lo\\modules\\vote\\widgets\\Display::widget([
                         'model_name' => 'aphorism', // name of current model
                         'target_id' => $model->id, // id of current element
                         // optional fields
