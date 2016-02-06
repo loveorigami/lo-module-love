@@ -15,12 +15,12 @@ use yii\helpers\Html;
                 <?= Html::a($model->aut->name, Url::to(['author/view', 'slug' => $model->aut->slug])) ?>
             </span>
         </div>
-
+        <div class="pull-right">
         <?= \lo\modules\vote\widgets\Vote::widget([
             'model' => $model,
         ]);
         ?>
-
+        </div>
     </div>
     <hr class="devider devider-dotted">
 </div>

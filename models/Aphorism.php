@@ -71,5 +71,5 @@ class Aphorism extends \lo\core\db\ActiveRecord
     {
         return $this->hasOne(Prim::className(), ['id' => 'prim_id']);
     }
-    
+
 }
