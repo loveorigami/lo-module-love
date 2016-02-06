@@ -5,6 +5,7 @@ namespace lo\modules\love\models;
 use yii\data\ActiveDataProvider;
 use Yii;
 use yii\db\Expression;
+use lo\modules\vote\models\AggregateRating;
 
 /**
  * Class AphorismSearch
@@ -42,7 +43,7 @@ class AphorismSearch extends Aphorism
                 ])->published();
 
             },
-        ])->groupBy(['id'])->published();
+        ])->joinWith('rating')->groupBy(['id'])->published();
 
         $dataProvider = Yii::createObject([
             'class' => ActiveDataProvider::className(),
@@ -55,6 +56,12 @@ class AphorismSearch extends Aphorism
             'label' => $this->getAttributeLabel('author'),
         ];
 
+        $dataProvider->sort->attributes['aggregate_rating'] = [
+            'asc' => [AggregateRating::tableName() . '.rating' => SORT_ASC],
+            'desc' => [AggregateRating::tableName() . '.rating' => SORT_DESC],
+            'label' => $this->getAttributeLabel('aggregate_rating'),
+        ];
+
         // No search? Then return data Provider
         if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
@@ -63,6 +70,16 @@ class AphorismSearch extends Aphorism
         foreach ($this->metaFields->fields as $field) {
             $field->applySearch($query);
         }
+
+/*        $dependency = new \yii\caching\DbDependency([
+            'sql' => 'SELECT MAX(updated_at) FROM url'
+        ]);
+
+        \Yii::$app->db->cache(function() use ($dataProvider) {
+
+            $dataProvider->prepare();
+
+        }, \Yii::$app->params['cacheExpire'], $dependency);*/
 
         return $dataProvider;
     }

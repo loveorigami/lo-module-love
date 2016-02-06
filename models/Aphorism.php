@@ -3,6 +3,8 @@
 namespace lo\modules\love\models;
 
 use Yii;
+use lo\modules\vote\models\AggregateRating;
+
 
 /**
  * This is the model class for table "page".
@@ -23,6 +25,8 @@ class Aphorism extends \lo\core\db\ActiveRecord
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
 
+    const MODEL_ID = 3;
+
     public $tplDir = '@lo/modules/love/modules/admin/views/aphorism/tpl/';
     /**
      * @inheritdoc
@@ -41,7 +45,6 @@ class Aphorism extends \lo\core\db\ActiveRecord
 
         $arr["vote"] = [
             'class' => \lo\modules\vote\behaviors\RatingBehavior::className(),
-            'model_name' => 'aphorism', // name of this model
         ];
         return $arr;
     }
@@ -68,6 +71,5 @@ class Aphorism extends \lo\core\db\ActiveRecord
     {
         return $this->hasOne(Prim::className(), ['id' => 'prim_id']);
     }
-
-
+    
 }

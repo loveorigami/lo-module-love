@@ -63,8 +63,8 @@ class AphorismController extends Controller
         $filter = $searchModel->load(Yii::$app->request->queryParams);
 
         $cacheId = CacheHelper::getActionCacheId(static::LIST_CACHE_ID);
-        //$res = '';
-        $res = Yii::$app->cache->get($cacheId);
+        $res = '';
+        //$res = Yii::$app->cache->get($cacheId);
 
         if (empty($res) OR $filter) {
             $dependency = Yii::createObject(TagDependency::className());
