@@ -43,7 +43,7 @@ class AphorismSearch extends Aphorism
                 ])->published();
 
             },
-        ])->joinWith('rating')->groupBy(['id'])->published();
+        ])->joinWith('aggregate')->joinWith('faved')->groupBy(['id'])->published();
 
         $dataProvider = Yii::createObject([
             'class' => ActiveDataProvider::className(),
