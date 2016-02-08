@@ -62,7 +62,13 @@ class AphorismController extends Controller
         $searchModel = Yii::createObject(['class' => AphorismSearch::className(), 'scenario' => ActiveRecord::SCENARIO_SEARCH]);
         $filter = $searchModel->load(Yii::$app->request->queryParams);
 
-        $cacheId = CacheHelper::getActionCacheId(static::LIST_CACHE_ID);
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->getSort()->defaultOrder = $this->orderBy;
+        $dataProvider->getPagination()->pageSize = $this->pageSize;
+
+        $res["html"] = $this->renderPartial('_grid', ["dataProvider" => $dataProvider]);
+
+/*        $cacheId = CacheHelper::getActionCacheId(static::LIST_CACHE_ID);
         $res = '';
         //$res = Yii::$app->cache->get($cacheId);
 
@@ -82,7 +88,7 @@ class AphorismController extends Controller
             if(!$filter)
                 Yii::$app->cache->set($cacheId, $res, Yii::$app->params["cacheDuration"], $dependency);
 
-        }
+        }*/
 
         return $this->render('index', compact('model', 'searchModel', 'dataProvider', 'res'));
 

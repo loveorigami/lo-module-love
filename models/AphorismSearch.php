@@ -27,7 +27,7 @@ class AphorismSearch extends Aphorism
      * Возвращает провайдер данных
      * @return ActiveDataProvider
      */
-    public function search($params)
+    public function search($params, $ucp=false)
     {
         $query = $this->find();
         $query->modelClass = get_parent_class($this);
@@ -43,7 +43,12 @@ class AphorismSearch extends Aphorism
                 ])->published();
 
             },
-        ])->joinWith('aggregate')->joinWith('faved')->groupBy(['id'])->published();
+        ])->joinWith('aggregate');
+
+        // user panel ?
+        ($ucp) ? $query->innerJoinWith('faved') : $query->joinWith('faved');
+
+        $query->groupBy(['id'])->published();
 
         $dataProvider = Yii::createObject([
             'class' => ActiveDataProvider::className(),

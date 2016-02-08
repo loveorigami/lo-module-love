@@ -5,8 +5,8 @@ use yii\helpers\Html;
 ?>
 
 
-<div class="testimonials testimonials-v1">
-    <div class="item">
+<div class="testimonials testimonials-v1" id="item-<?= $model->aggregate->model_id ?>-<?= $model->aggregate->target_id ?>">
+    <div class="item" >
         <p><?= $model->text ?></p>
 
         <div class="testimonial-info">
