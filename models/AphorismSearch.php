@@ -2,9 +2,10 @@
 
 namespace lo\modules\love\models;
 
-use yii\data\ActiveDataProvider;
 use Yii;
 use yii\db\Expression;
+use yii\data\ActiveDataProvider;
+use yii\helpers\ArrayHelper;
 use lo\modules\vote\models\AggregateRating;
 
 /**
@@ -15,6 +16,8 @@ use lo\modules\vote\models\AggregateRating;
  */
 class AphorismSearch extends Aphorism
 {
+   public $options = ['ucp'=>false];
+
     public function attributeLabels()
     {
         return [
@@ -27,8 +30,10 @@ class AphorismSearch extends Aphorism
      * Возвращает провайдер данных
      * @return ActiveDataProvider
      */
-    public function search($params, $ucp=false)
+    public function search($params, $options=[])
     {
+        $options = ArrayHelper::merge($this->options, $options);
+
         $query = $this->find();
         $query->modelClass = get_parent_class($this);
 
@@ -46,7 +51,7 @@ class AphorismSearch extends Aphorism
         ])->joinWith('aggregate');
 
         // user panel ?
-        ($ucp) ? $query->innerJoinWith('faved') : $query->joinWith('faved');
+        ($options['ucp']) ? $query->innerJoinWith('faved') : $query->joinWith('faved');
 
         $query->groupBy(['id'])->published();
 

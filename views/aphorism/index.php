@@ -1,12 +1,12 @@
 <?php
 use lo\core\widgets\offcanvas\OffCanvas;
 use lo\core\widgets\block\Block;
+use lo\core\widgets\search\Search;
 use lo\core\widgets\treelist\TreeList;
 use lo\modules\love\models\Category;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ListView;
-use yii\widgets\ActiveForm;
 
 $this->title = $model->name;
 
@@ -19,35 +19,18 @@ $this->params['breadcrumbs'][0] = ['label' => Yii::t('frontend', 'Aphorismes'), 
 $this->params['breadcrumbs'][] = $model->name;
 
 $action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$model->slug];
+
 ?>
-
-
-
 
 <?php OffCanvas::begin(); ?>
 
-<?php Block::begin(['type'=>'pink', 'title'=>'Поиск афоризмов']); ?>
-<?php $form = ActiveForm::begin([
+<?= Search::widget([
+    'searchModel' => $searchModel,
     'action' => $action,
-    'method' => 'get',
+    'title' => 'Поиск афоризмов' ,
 ]);
-echo '<div class="input-group">';
-
-echo Html::activeTextInput($searchModel,
-    'text',
-    ['placeholder' => 'Поиск...', 'class'=>'form-control']
-);
-
-echo '<div class="input-group-btn">
-        <button type="submit" tabindex="-1" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-    </div>';
-echo '</div>';
-
+//var_dump($searchModel);
 ?>
-
-<?php $form->end(); ?>
-
-<?php Block::end(); ?>
 
 <?php Block::begin(['title'=>'Категории']); ?>
 
