@@ -7,6 +7,7 @@ use yii\db\Expression;
 use yii\data\ActiveDataProvider;
 use yii\helpers\ArrayHelper;
 use lo\modules\vote\models\AggregateRating;
+use lo\modules\vote\models\Favorites;
 
 /**
  * Class AphorismSearch
@@ -16,13 +17,15 @@ use lo\modules\vote\models\AggregateRating;
  */
 class AphorismSearch extends Aphorism
 {
-   public $options = ['ucp'=>false];
+    public $options = ['ucp' => false];
 
     public function attributeLabels()
     {
         return [
             'author' => 'Автор',
-            'aggregate_rating' => 'Рейтинг'
+            'aggregate_rating' => 'Рейтинг',
+            'favorites' => 'Избранное',
+            'date' => 'Дата'
         ];
     }
 
@@ -30,7 +33,7 @@ class AphorismSearch extends Aphorism
      * Возвращает провайдер данных
      * @return ActiveDataProvider
      */
-    public function search($params, $options=[])
+    public function search($params, $options = [])
     {
         $options = ArrayHelper::merge($this->options, $options);
 
@@ -70,7 +73,32 @@ class AphorismSearch extends Aphorism
             'asc' => [AggregateRating::tableName() . '.rating' => SORT_ASC],
             'desc' => [AggregateRating::tableName() . '.rating' => SORT_DESC],
             'label' => $this->getAttributeLabel('aggregate_rating'),
+            'default' => SORT_DESC
         ];
+
+        $dataProvider->sort->attributes['favorites'] = [
+            'desc' => [AggregateRating::tableName() . '.favs' => SORT_DESC],
+            'asc' => [AggregateRating::tableName() . '.favs' => SORT_ASC],
+            'label' => $this->getAttributeLabel('favorites'),
+            'default' => SORT_DESC
+        ];
+
+        if (($options['ucp'])) {
+            $dataProvider->sort->attributes['date'] = [
+                'desc' => ['f.updated_at' => SORT_DESC],
+                'asc' => ['f.updated_at' => SORT_ASC],
+                'label' => $this->getAttributeLabel('date'),
+                'default' => SORT_DESC
+            ];
+        } else{
+            $dataProvider->sort->attributes['date'] = [
+                'desc' => [Aphorism::tableName().'.updated_at' => SORT_DESC],
+                'asc' => [Aphorism::tableName().'.updated_at' => SORT_ASC],
+                'label' => $this->getAttributeLabel('date'),
+                'default' => SORT_DESC
+            ];
+        }
+
 
         // No search? Then return data Provider
         if (!($this->load($params) && $this->validate())) {
@@ -81,15 +109,15 @@ class AphorismSearch extends Aphorism
             $field->applySearch($query);
         }
 
-/*        $dependency = new \yii\caching\DbDependency([
-            'sql' => 'SELECT MAX(updated_at) FROM url'
-        ]);
+        /*        $dependency = new \yii\caching\DbDependency([
+                    'sql' => 'SELECT MAX(updated_at) FROM url'
+                ]);
 
-        \Yii::$app->db->cache(function() use ($dataProvider) {
+                \Yii::$app->db->cache(function() use ($dataProvider) {
 
-            $dataProvider->prepare();
+                    $dataProvider->prepare();
 
-        }, \Yii::$app->params['cacheExpire'], $dependency);*/
+                }, \Yii::$app->params['cacheExpire'], $dependency);*/
 
         return $dataProvider;
     }

@@ -58,7 +58,7 @@ $action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$
         <p><?=$model->intro?></p>
     </div>
     <?php Block::end(); ?>
-    <?php Block::begin(['type'=>'content']); ?>
-        <?=$res['html']?>
-    <?php Block::end(); ?>
+
+    <?=$res['html']?>
+
 </div>
