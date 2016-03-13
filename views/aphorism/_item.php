@@ -12,7 +12,7 @@ use yii\helpers\Html;
         <div class="testimonial-info">
             <?= Html::img('@storageUrl' . $model->aut->img, ['class' => 'rounded-x', 'alt' => $model->aut->name]); ?>
             <span class="testimonial-author">
-                <?= Html::a($model->aut->name, Url::to(['author/view', 'slug' => $model->aut->slug])) ?>
+                <?= Html::a($model->aut->name, Url::to(['/love/author/view', 'slug' => $model->aut->slug])) ?>
             </span>
         </div>
         <div class="pull-right">
