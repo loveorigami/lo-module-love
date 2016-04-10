@@ -164,7 +164,7 @@ class AuthorMeta extends MetaFields
                     "class" => \lo\core\db\fields\HtmlField::className(),
                     "inputClass" =>[
                         'class'=>'lo\core\inputs\HtmlInput',
-                        "fileManagerController"=>['elfinder', 'path' => 'love/author'],
+                        'path' => 'love/author',
                     ],
                     "inputClassOptions" => [
                         "widgetOptions"=>[
