@@ -33,7 +33,7 @@ class Tag extends \lo\core\db\ActiveRecord
      */
     public function metaClass()
     {
-        return TagMeta::className();
+        return TagMeta::class;
     }
 
 }

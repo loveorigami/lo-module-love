@@ -45,7 +45,7 @@ class Author extends \lo\core\db\ActiveRecord
      */
     public function metaClass()
     {
-        return AuthorMeta::className();
+        return AuthorMeta::class;
     }
 
     /**
@@ -56,7 +56,7 @@ class Author extends \lo\core\db\ActiveRecord
         $arr = parent::behaviors();
 
         $arr["manyManySaver"] = [
-            'class' => \lo\core\behaviors\ManyManySaver::className(),
+            'class' => \lo\core\behaviors\ManyManySaver::class,
             'names' => ['categories'],
         ];
         return $arr;
@@ -90,7 +90,7 @@ class Author extends \lo\core\db\ActiveRecord
      */
     public function getCategories()
     {
-        return $this->hasMany(Category::className(), ['id' => 'cat_id'])->viaTable('{{%love__author_cat}}', ['aut_id' => 'id']);
+        return $this->hasMany(Category::class, ['id' => 'cat_id'])->viaTable('{{%love__author_cat}}', ['aut_id' => 'id']);
     }
 
     /**
@@ -99,7 +99,7 @@ class Author extends \lo\core\db\ActiveRecord
      */
     public function getAphs()
     {
-        return $this->hasMany(Aphorism::className(), ['aut_id' => 'id']);
+        return $this->hasMany(Aphorism::class, ['aut_id' => 'id']);
     }
 
 }

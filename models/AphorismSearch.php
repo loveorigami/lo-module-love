@@ -59,7 +59,7 @@ class AphorismSearch extends Aphorism
         $query->groupBy(['id'])->published();
 
         $dataProvider = Yii::createObject([
-            'class' => ActiveDataProvider::className(),
+            'class' => ActiveDataProvider::class,
             "query" => $query,
         ]);
 

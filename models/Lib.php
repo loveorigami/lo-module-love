@@ -34,7 +34,7 @@ class Lib extends \lo\core\db\ActiveRecord implements ICsvImportable
      */
     public function metaClass()
     {
-        return LibMeta::className();
+        return LibMeta::class;
     }
 
     /**

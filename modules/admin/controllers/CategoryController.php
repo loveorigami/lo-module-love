@@ -19,60 +19,60 @@ class CategoryController extends Controller
 
     public function actions()
     {
-        $class = Category::className();
+        $class = Category::class;
         return [
             'index' => [
-                'class' => crud\TIndex::className(),
+                'class' => crud\TIndex::class,
                 'modelClass' => $class,
             ],
 
             'create' => [
-                'class' => crud\TCreate::className(),
+                'class' => crud\TCreate::class,
                 'modelClass' => $class,
             ],
 
             'update' => [
-                'class' => crud\TUpdate::className(),
+                'class' => crud\TUpdate::class,
                 'modelClass' => $class,
             ],
 
             'view' => [
-                'class' => crud\View::className(),
+                'class' => crud\View::class,
                 'modelClass' => $class,
             ],
 
             'delete' => [
-                'class' => crud\TDelete::className(),
+                'class' => crud\TDelete::class,
                 'modelClass' => $class,
             ],
 
             'groupdelete' => [
-                'class' => crud\TGroupDelete::className(),
+                'class' => crud\TGroupDelete::class,
                 'modelClass' => $class,
             ],
 
             'up' => [
-                'class' => crud\TUp::className(),
+                'class' => crud\TUp::class,
                 'modelClass' => $class,
             ],
 
             'down' => [
-                'class' => crud\TDown::className(),
+                'class' => crud\TDown::class,
                 'modelClass' => $class,
             ],
 
             'replace' => [
-                'class' => crud\TReplace::className(),
+                'class' => crud\TReplace::class,
                 'modelClass' => $class,
             ],
 
             'editable'=>[
-                'class'=>crud\XEditable::className(),
+                'class'=>crud\XEditable::class,
                 'modelClass'=>$class,
             ],
 
             'list'=>[
-                'class'=>crud\ListId::className(),
+                'class'=>crud\ListId::class,
                 'modelClass'=>$class,
             ],
         ];

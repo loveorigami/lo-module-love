@@ -35,7 +35,7 @@ class CategoryMeta extends MetaFields
         return [
             "parent_id" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\ParentListField::className(),
+                    "class" => \lo\core\db\fields\ParentListField::class,
                     "title" => Yii::t('backend', 'Parent'),
                     "data" => [$this->owner, "getListTreeData"],
                 ],
@@ -43,7 +43,7 @@ class CategoryMeta extends MetaFields
             ],
             "img" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\ElfImgField::className(),
+                    "class" => \lo\core\db\fields\ElfImgField::class,
                     "inputClassOptions" => [
                         "widgetOptions"=>[
                             'path'=>'love/cat'
@@ -56,7 +56,7 @@ class CategoryMeta extends MetaFields
             ],
             "name" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('backend', 'Name'),
                     "showInGrid" => true,
                     "showInFilter" => true,
@@ -67,7 +67,7 @@ class CategoryMeta extends MetaFields
             ],
             "slug" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\SlugField::className(),
+                    "class" => \lo\core\db\fields\SlugField::class,
                     "title" => Yii::t('common', 'Slug'),
                     "showInGrid" => true,
                     "generateFrom" => "name",
@@ -77,7 +77,7 @@ class CategoryMeta extends MetaFields
 
             "intro" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextAreaField::className(),
+                    "class" => \lo\core\db\fields\TextAreaField::class,
                     "title" => Yii::t('backend', 'Intro'),
                     "showInGrid" => true,
                     "isRequired" => false,
@@ -86,7 +86,7 @@ class CategoryMeta extends MetaFields
             ],
             "intro2" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextAreaField::className(),
+                    "class" => \lo\core\db\fields\TextAreaField::class,
                     "title" => Yii::t('backend', 'Text'),
                     "showInGrid" => false,
                     "isRequired" => false,
@@ -96,7 +96,7 @@ class CategoryMeta extends MetaFields
 
             "total_hits" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\NumberField::className(),
+                    "class" => \lo\core\db\fields\NumberField::class,
                     "title" => Yii::t('backend', 'Total hits'),
                     "showInGrid" => true,
                     "isRequired" => false,
@@ -105,7 +105,7 @@ class CategoryMeta extends MetaFields
             ],
             "title" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'title'),
                     "showInGrid" => false,
                     "isRequired" => false,
@@ -115,7 +115,7 @@ class CategoryMeta extends MetaFields
             ],
             "description" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextAreaField::className(),
+                    "class" => \lo\core\db\fields\TextAreaField::class,
                     "title" => Yii::t('common', 'description'),
                     "showInGrid" => false,
                     "isRequired" => false,
@@ -125,7 +125,7 @@ class CategoryMeta extends MetaFields
             ],
             "keywords" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'keywords'),
                     "showInGrid" => false,
                     "isRequired" => false,

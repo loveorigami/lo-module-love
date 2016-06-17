@@ -20,12 +20,12 @@ class Parser extends \lo\core\db\ActiveRecord
      */
     public function metaClass()
     {
-        return ParserMeta::className();
+        return ParserMeta::class;
     }
 
     public function getAut()
     {
-        return $this->hasOne(Author::className(), ['id' => 'aut_id']);
+        return $this->hasOne(Author::class, ['id' => 'aut_id']);
     }
 
 }

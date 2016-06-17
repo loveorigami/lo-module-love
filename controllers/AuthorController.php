@@ -62,14 +62,14 @@ class AuthorController extends Controller
 
             //$model->updateCounters(['total_hits' => 1]);
 
-            $searchModel = Yii::createObject(['class' => AphorismSearch::className(), 'scenario' => ActiveRecord::SCENARIO_SEARCH]);
+            $searchModel = Yii::createObject(['class' => AphorismSearch::class, 'scenario' => ActiveRecord::SCENARIO_SEARCH]);
             $filter = $searchModel->load(Yii::$app->request->queryParams);
 
             $cacheId = CacheHelper::getActionCacheId(static::LIST_CACHE_ID);
             $res = Yii::$app->cache->get($cacheId);
 
             if (empty($res) OR $filter) {
-                $dependency = Yii::createObject(TagDependency::className());
+                $dependency = Yii::createObject(TagDependency::class);
 
                 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                 $dataProvider->getSort()->defaultOrder = $this->orderBy;

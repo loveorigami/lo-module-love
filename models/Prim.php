@@ -34,7 +34,7 @@ class Prim extends \lo\core\db\ActiveRecord implements ICsvImportable
      */
     public function metaClass()
     {
-        return PrimMeta::className();
+        return PrimMeta::class;
     }
 
     /**

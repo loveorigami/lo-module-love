@@ -30,7 +30,7 @@ class ParserMeta extends MetaFields
         return [
             "aut_id" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\AjaxOneField::className(),
+                    "class" => \lo\core\db\fields\AjaxOneField::class,
                     "inputClassOptions" => [
                         //'modalUrl' => ['author/create'],
                         'loadUrl' => ['author/list'],
@@ -45,7 +45,7 @@ class ParserMeta extends MetaFields
             ],
             "dop" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\ElfImgField::className(),
+                    "class" => \lo\core\db\fields\ElfImgField::class,
                     "inputClassOptions" => [
                         "widgetOptions"=>[
                             'path'=>'love/aph'

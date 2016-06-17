@@ -42,7 +42,7 @@ class Aphorism extends \lo\core\db\ActiveRecord
         $arr = parent::behaviors();
 
         $arr["vote"] = [
-            'class' => \lo\modules\vote\behaviors\RatingBehavior::className(),
+            'class' => \lo\modules\vote\behaviors\RatingBehavior::class,
         ];
         return $arr;
     }
@@ -52,22 +52,22 @@ class Aphorism extends \lo\core\db\ActiveRecord
      */
     public function metaClass()
     {
-        return AphorismMeta::className();
+        return AphorismMeta::class;
     }
 
     public function getLib()
     {
-        return $this->hasOne(Lib::className(), ['id' => 'lib_id']);
+        return $this->hasOne(Lib::class, ['id' => 'lib_id']);
     }
 
     public function getAut()
     {
-        return $this->hasOne(Author::className(), ['id' => 'aut_id']);
+        return $this->hasOne(Author::class, ['id' => 'aut_id']);
     }
 
     public function getPrim()
     {
-        return $this->hasOne(Prim::className(), ['id' => 'prim_id']);
+        return $this->hasOne(Prim::class, ['id' => 'prim_id']);
     }
 
 }

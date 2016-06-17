@@ -20,7 +20,7 @@ class LibMeta extends MetaFields
         return [
             "img" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\ElfImgField::className(),
+                    "class" => \lo\core\db\fields\ElfImgField::class,
                     "inputClassOptions" => [
                         "widgetOptions"=>[
                             'path'=>'love/lib'
@@ -33,7 +33,7 @@ class LibMeta extends MetaFields
             ],
             "name" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'Name'),
                     "showInGrid" => true,
                     "showInFilter" => true,
@@ -44,7 +44,7 @@ class LibMeta extends MetaFields
             ],
             "fullname" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'Fullname'),
                     "showInGrid" => true,
                     "showInFilter" => true,
@@ -54,7 +54,7 @@ class LibMeta extends MetaFields
             ],
             "link" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'Link'),
                     "showInGrid" => false,
                     "showInFilter" => true,
@@ -64,7 +64,7 @@ class LibMeta extends MetaFields
             ],
             "text" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\HtmlField::className(),
+                    "class" => \lo\core\db\fields\HtmlField::class,
                     "inputClass" =>[
                         'class'=>'lo\core\inputs\HtmlInput',
                         "fileManagerController"=>['elfinder', 'path' => 'love/lib'],

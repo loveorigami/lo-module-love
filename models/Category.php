@@ -36,7 +36,7 @@ class Category extends \lo\core\db\TActiveRecord
      */
     public function metaClass()
     {
-        return CategoryMeta::className();
+        return CategoryMeta::class;
     }
 
     /**

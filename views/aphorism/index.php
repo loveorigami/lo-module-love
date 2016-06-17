@@ -35,7 +35,7 @@ $action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$
 <?php Block::begin(['title'=>'Категории']); ?>
 
     <?= TreeList::widget([
-        'modelClass' => Category::className(),
+        'modelClass' => Category::class,
         'urlCreate' => function ($slug) {
             return [Category::getRoute(), 'cat'=>$slug];
         },

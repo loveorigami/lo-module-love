@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][]=$this->title;
     'model' => $searchModel,
     'tree' => true,
     /*    'userColumns' => [[
-            'class' => \yii\grid\DataColumn::className(),
+            'class' => \yii\grid\DataColumn::class,
             'header' => Yii::t('common', 'Child'),
             'value' => function ($model, $index, $widget) {
                 return count($model->children(1)->all());

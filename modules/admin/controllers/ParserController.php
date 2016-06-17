@@ -33,7 +33,7 @@ class ParserController extends Controller
     {
         return [
             'settings' => [
-                'class' => crud\Settings::className(),
+                'class' => crud\Settings::class,
                 'keys' => [
                     'love.parser.page' => [
                         'label' => 'Страница с афоризмами',

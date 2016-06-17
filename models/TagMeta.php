@@ -20,7 +20,7 @@ class TagMeta extends MetaFields
         return [
             "name" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'Name'),
                     "showInGrid" => true,
                     "showInFilter" => true,
@@ -32,7 +32,7 @@ class TagMeta extends MetaFields
 
             "frequency" => [
                 "definition" => [
-                    "class" => \lo\core\db\fields\TextField::className(),
+                    "class" => \lo\core\db\fields\TextField::class,
                     "title" => Yii::t('common', 'Frequency'),
                     "showInGrid" => true,
                     "showInFilter" => true,

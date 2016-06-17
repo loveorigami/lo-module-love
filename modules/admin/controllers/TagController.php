@@ -21,35 +21,35 @@ class TagController extends Controller
 
     public function actions()
     {
-        $class = Tag::className();
+        $class = Tag::class;
         return [
             'index'=>[
-                'class'=> crud\Index::className(),
+                'class'=> crud\Index::class,
                 'modelClass'=>$class,
             ],
             'view'=>[
-                'class'=> crud\View::className(),
+                'class'=> crud\View::class,
                 'modelClass'=>$class,
             ],
             'create'=>[
-                'class'=> crud\Create::className(),
+                'class'=> crud\Create::class,
                 'modelClass'=>$class,
             ],
             'update'=>[
-                'class'=> crud\Update::className(),
+                'class'=> crud\Update::class,
                 'modelClass'=>$class,
             ],
             'delete'=>[
-                'class'=> crud\Delete::className(),
+                'class'=> crud\Delete::class,
                 'modelClass'=>$class,
             ],
 
             'editable'=>[
-                'class'=>crud\XEditable::className(),
+                'class'=>crud\XEditable::class,
                 'modelClass'=>$class,
             ],
             'list'=>[
-                'class'=>crud\ListStr::className(),
+                'class'=>crud\ListStr::class,
                 'modelClass'=>$class,
             ],
         ];
