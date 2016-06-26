@@ -43,8 +43,17 @@ class Category extends \lo\core\db\TActiveRecord
      * Возвращает ссылку на категорию
      * @return array|string
      */
-    public function getRoute()
+    public function getRouteAphorism()
     {
         return '/love/aphorism/index';
+    }
+    
+    /**
+     * Возвращает ссылку на категорию
+     * @return array|string
+     */
+    public function getRouteStory()
+    {
+        return '/love/story/index';
     }
 }

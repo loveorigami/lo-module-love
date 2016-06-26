@@ -16,6 +16,10 @@ return [
                 'aphorism/<slug:[\w\-]+>' => 'love/aphorism/view',
                 'aphorism' => 'love/aphorism/index',
 
+                'story/<cat:[\w\-]+>' => 'love/story/index',
+                'story/<slug:[\w\-]+>' => 'love/story/view',
+                'story' => 'love/story/index',
+
                 'love/author/<slug:[\w\-]+>' => 'love/author/view',
                 'love/author' => 'love/author/index',
             ]

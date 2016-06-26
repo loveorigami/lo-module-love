@@ -15,10 +15,10 @@ $breadcrumbs = $model->getBreadCrumbsItems($model->id, function ($m) {
 });
 $breadcrumbs = array_slice($breadcrumbs, 0, -1);
 $this->params['breadcrumbs'] = $breadcrumbs;
-$this->params['breadcrumbs'][0] = ['label' => Yii::t('frontend', 'Aphorismes'), 'url' => ['aphorism/index']];;
+$this->params['breadcrumbs'][0] = ['label' => Yii::t('frontend', 'Story'), 'url' => ['story/index']];
 $this->params['breadcrumbs'][] = $model->name;
 
-$action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$model->slug];
+$action = $model->id == Category::ROOT_STORY ? ['index'] : ['index', 'cat'=>$model->slug];
 
 ?>
 
@@ -27,7 +27,7 @@ $action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$
 <?= Search::widget([
     'searchModel' => $searchModel,
     'action' => $action,
-    'title' => 'Поиск афоризмов' ,
+    'title' => 'Поиск историй' ,
 ]);
 //var_dump($searchModel);
 ?>
@@ -37,9 +37,9 @@ $action = $model->id == Category::ROOT_APHORISM ? ['index'] : ['index', 'cat'=>$
     <?= TreeList::widget([
         'modelClass' => Category::class,
         'urlCreate' => function ($slug) {
-            return [Category::getRouteAphorism(), 'cat'=>$slug];
+            return [Category::getRouteStory(), 'cat'=>$slug];
         },
-        'parentId' => Category::ROOT_APHORISM,
+        'parentId' => Category::ROOT_STORY,
         'level' => 2,
         'options' => [
             'class' => 'list-group sidebar-nav-v1',
