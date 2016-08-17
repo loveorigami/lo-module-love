@@ -5,7 +5,6 @@ namespace lo\modules\love\models;
 use Yii;
 use lo\modules\import\models\ICsvImportable;
 
-
 /**
  * This is the model class.
  *
@@ -13,13 +12,8 @@ use lo\modules\import\models\ICsvImportable;
  */
 class Lib extends \lo\core\db\ActiveRecord implements ICsvImportable
 {
-
-    use \lo\core\rbac\ConstraintTrait;
-
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
-
-    public $tplDir = '@lo/modules/love/modules/admin/views/lib/tpl/';
 
     /**
      * @inheritdoc

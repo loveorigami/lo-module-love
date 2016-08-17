@@ -13,13 +13,8 @@ use lo\modules\import\models\ICsvImportable;
  */
 class Prim extends \lo\core\db\ActiveRecord implements ICsvImportable
 {
-
-    use \lo\core\rbac\ConstraintTrait;
-
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
-
-    public $tplDir = '@lo/modules/love/modules/admin/views/prim/tpl/';
 
     /**
      * @inheritdoc

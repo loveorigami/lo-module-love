@@ -19,13 +19,9 @@ use lo\modules\vote\models\AggregateRating;
  */
 class Aphorism extends \lo\core\db\ActiveRecord
 {
-
-    use \lo\core\rbac\ConstraintTrait;
-
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
 
-    public $tplDir = '@lo/modules/love/modules/admin/views/aphorism/tpl/';
     /**
      * @inheritdoc
      */

@@ -19,13 +19,8 @@ use Yii;
  */
 class Story extends \lo\core\db\ActiveRecord
 {
-
-    use \lo\core\rbac\ConstraintTrait;
-
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
-
-    public $tplDir = '@lo/modules/love/modules/admin/views/story/tpl/';
 
     /**
      * @inheritdoc

@@ -12,17 +12,12 @@ use Yii;
  */
 class Category extends \lo\core\db\TActiveRecord
 {
-
-    use \lo\core\rbac\ConstraintTrait;
-
     const STATUS_DRAFT = 0;
     const STATUS_PUBLISHED = 1;
 
     const ROOT_APHORISM = 153;
     const ROOT_STORY = 154;
 
-
-    public $tplDir = '@lo/modules/love/modules/admin/views/category/tpl/';
     /**
      * @inheritdoc
      */
